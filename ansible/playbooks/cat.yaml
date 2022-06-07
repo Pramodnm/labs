@@ -1,7 +1,7 @@
 - hosts: webservers
   tasks:
   - name: print content of the file
-    command: cat /home/ansible/hosts
+    command: cat /etc/ansible/hosts
     register: cat_contents
     ignore_errors: yes
   - name: display contents
