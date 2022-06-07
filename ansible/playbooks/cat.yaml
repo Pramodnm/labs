@@ -1,0 +1,17 @@
+- hosts: webservers
+  tasks:
+  - name: print content of the file
+    command: cat /home/ansible/hosts
+    register: cat_contents
+    ignore_errors: yes
+  - name: display contents
+    debug:
+      msg: "{{cat_contents}}"
+  - name: display contents
+    debug:
+      msg: "{{cat_contents.stdout}}"
+    when: cat_contents.stderr == ""
+  - name: display errors
+    debug:
+      msg: "{{cat_contents.stderr}}"
+    when: not cat_contents.stderr == ""
