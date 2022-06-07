@@ -9,3 +9,11 @@
       - "openjdk-8-jdk"
       - "tomcat8"
       - "apache2"
+    notify:
+      - "enable and restart {{ item }}"
+  handlers:
+  - name: "enable and restart {{ item }}"
+    service:
+      name: "{{ item }}"
+      enabled: yes
+      state: restarted
