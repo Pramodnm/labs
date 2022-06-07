@@ -1,0 +1,20 @@
+- hosts: webservers
+  become: yes
+  tasks:
+  - name: Install openjdk8
+    package: 
+      name: openjdk-8-jdk
+      state: present
+  - name: Install tomcat8
+    package:
+      name: tomcat8
+      state: present
+  - name: Download jenkins
+    get_url:
+      url: https://updates.jenkins-ci.org/download/war/2.332.3/jenkins.war
+      dest: /var/lib/tomcat8/webapps/jenkins.war
+  - name: Enable and start tomcat
+    service:
+      name: tomcat8
+      state: started
+      enabled: yes
