@@ -1,0 +1,11 @@
+- hosts: webservers
+  become: yes
+  tasks:
+  - name: Install all packages
+    package:
+      name: "{{ item }}"
+      state: present
+    loop:
+      - "openjdk-8-jdk"
+      - "tomcat8"
+      - "apache2"
